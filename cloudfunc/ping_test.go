@@ -1,4 +1,4 @@
-package hellogcp
+package cloudfunc
 
 import (
 	"fmt"
@@ -7,10 +7,10 @@ import (
 	"testing"
 )
 
-func TestHelloWorld(t *testing.T) {
+func TestPint(t *testing.T) {
 	req := httptest.NewRequest("GET", "http://example.com/ping", nil)
 	w := httptest.NewRecorder()
-	HelloWorld(w, req)
+	Ping(w, req)
 
 	resp := w.Result()
 	body, _ := ioutil.ReadAll(resp.Body)
