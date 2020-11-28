@@ -1,5 +1,5 @@
 // Contains an HTTP Cloud Function.
-package cloudfunc
+package hellogcp
 
 import (
 	"encoding/json"
