@@ -1,6 +1,6 @@
 module github.com/cao7113/hellogcp
 
-go 1.15
+//go 1.13
 
 require (
 	github.com/sirupsen/logrus v1.7.0
