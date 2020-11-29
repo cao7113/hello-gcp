@@ -10,10 +10,23 @@ tasks:
   deploy:
     desc: create and redeploy cloud function
     cmds:
-      - gcloud functions deploy Hello --runtime go113 --trigger-http
+      - gcloud functions deploy Hello --entry-point Hello --runtime go113 --trigger-http \
+        --allow-unauthenticated --memory=128MB --region=asia-northeast1
+  trigger:
+    desc: trigger cloud function, Great!
+    cmds:
+      - gcloud functions call Hello --region=asia-northeast1
+  list:
+    desc: list functions
+    cmds:
+      - gcloud functions list
+  del:
+    desc: remove function
+    cmds:
+      - gcloud functions delete Hello --region=us-central1
   stest:
     cmds:
       - echo BASE_URL=$BASE_URL
-      - go test ./hello_http_system_test.go
+      - go test ./http_system_test.go
     env:
-      BASE_URL: https://us-central1-shareup.cloudfunctions.net/Hello
+      BASE_URL: https://asia-northeast1-shareup.cloudfunctions.net/Hello

@@ -29,7 +29,7 @@ func TestHelloHTTPSystem(t *testing.T) {
 		want string
 	}{
 		{body: `{"message": ""}`, want: "Hello, Blank!"},
-		{body: `{"message": "Gopher"}`, want: "Hello, Gopher!"},
+		{body: `{"message": "Gopher"}`, want: "Hello Gopher!"},
 	}
 
 	for _, test := range tests {

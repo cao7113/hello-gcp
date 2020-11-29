@@ -50,5 +50,5 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 	}
 
 	logrus.Infof("received message: %s at %s", d.Message, time.Now().Format(time.RFC3339Nano))
-	fmt.Fprintf(w, "Hello, %s!", html.EscapeString(d.Message))
+	fmt.Fprintf(w, "Hello %s!", html.EscapeString(d.Message))
 }
