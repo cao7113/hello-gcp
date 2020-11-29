@@ -6,6 +6,13 @@ tasks:
     cmds:
       - go test -v ./...
     silent: true
+  stest:
+    desc: system test
+    cmds:
+      - echo BASE_URL=$BASE_URL
+      - go test ./http_system_test.go
+    env:
+      BASE_URL: https://asia-northeast1-shareup.cloudfunctions.net/Hello
 
   deploy:
     desc: create and redeploy cloud function
@@ -23,10 +30,5 @@ tasks:
   del:
     desc: remove function
     cmds:
-      - gcloud functions delete Hello --region=us-central1
-  stest:
-    cmds:
-      - echo BASE_URL=$BASE_URL
-      - go test ./http_system_test.go
-    env:
-      BASE_URL: https://asia-northeast1-shareup.cloudfunctions.net/Hello
+      #- gcloud functions delete Hello --region=us-central1
+      - gcloud functions call Hello --region=asia-northeast1
