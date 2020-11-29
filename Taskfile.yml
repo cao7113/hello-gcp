@@ -31,4 +31,4 @@ tasks:
     desc: remove function
     cmds:
       #- gcloud functions delete Hello --region=us-central1
-      - gcloud functions call Hello --region=asia-northeast1
+      - gcloud functions delete Hello --region=asia-northeast1 --quiet
