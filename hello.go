@@ -8,6 +8,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"time"
 )
 
 // HelloWorld prints the JSON encoded "message" field in the body
@@ -29,9 +30,18 @@ func HelloWorld(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	if d.Message == "" {
+	switch d.Message {
+	case "":
 		fmt.Fprint(w, "Hello World!")
 		return
+	case "fatal":
+		log.Fatal("hit fatal")
+		return
+	case "panic":
+		panic("hit panic")
+		return
 	}
+
+	log.Printf("received message: %s at %s", d.Message, time.Now().Format(time.RFC3339Nano))
 	fmt.Fprint(w, html.EscapeString(d.Message))
 }
