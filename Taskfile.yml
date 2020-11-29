@@ -1,10 +1,19 @@
 # https://taskfile.dev
 version: '2'
-vars:
-  GREETING: Hello, World!
 tasks:
-  default:
-    desc: default task
+  t:
+    desc: test
     cmds:
-      - echo "{{.GREETING}}"
+      - go test -v ./...
     silent: true
+
+  deploy:
+    desc: create and redeploy cloud function
+    cmds:
+      - gcloud functions deploy Hello --runtime go113 --trigger-http
+  stest:
+    cmds:
+      - echo BASE_URL=$BASE_URL
+      - go test ./hello_http_system_test.go
+    env:
+      BASE_URL: https://us-central1-shareup.cloudfunctions.net/Hello

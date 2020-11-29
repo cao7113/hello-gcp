@@ -1,0 +1,14 @@
+# https://taskfile.dev
+version: '2'
+tasks:
+  install-cloud-sdk:
+    cmds:
+      - brew install google-cloud-sdk
+      # config your shell as prompt
+      - gcloud version
+      # can init many times
+      - gcloud init --skip-diagnostics
+      #- gcloud config set compute/zone asia-northeast1-a
+      #- gcloud config get-value compute/zone
+      #- gcloud info
+      # config info in ~/.config/gcloud, ~/.config/gcloud/configurations/config_*
