@@ -14,21 +14,41 @@ tasks:
     env:
       BASE_URL: https://asia-northeast1-shareup.cloudfunctions.net/Hello
 
-  deploy:
-    desc: create and redeploy cloud function
-    cmds:
-      - gcloud functions deploy Hello --entry-point Hello --runtime go113 --trigger-http \
-        --allow-unauthenticated --memory=128MB --region=asia-northeast1
-  trigger:
-    desc: trigger cloud function, Great!
-    cmds:
-      - gcloud functions call Hello --region=asia-northeast1
+  ## cloud functions
   list:
     desc: list functions
     cmds:
       - gcloud functions list
-  del:
+  dep-hello:
+    desc: create and redeploy cloud function
+    cmds:
+      - gcloud functions deploy Hello --entry-point Hello --runtime go113 --trigger-http --allow-unauthenticated --memory=128MB --region=asia-northeast1
+  call-hello:
+    desc: trigger cloud function, Great!
+    cmds:
+      - gcloud functions call Hello --region=asia-northeast1
+      #- gcloud functions call Hello --region=asia-northeast1 --data='{"message": "geek"}'
+  del-hello:
     desc: remove function
     cmds:
       #- gcloud functions delete Hello --region=us-central1
       - gcloud functions delete Hello --region=asia-northeast1 --quiet
+
+  # ping-pong
+  dep-ping:
+    desc: create and redeploy cloud function
+    cmds:
+      - gcloud functions deploy Ping --entry-point Ping --runtime go113 --trigger-http --allow-unauthenticated --memory=128MB --region=asia-northeast1
+  call-ping:
+    desc: trigger cloud function, Great!
+    cmds:
+      - gcloud functions call Ping --region=asia-northeast1
+
+  dep-ding:
+    desc: create and redeploy cloud function
+    cmds:
+      - gcloud functions deploy Ding --entry-point Ding --runtime go113 --trigger-http --allow-unauthenticated --memory=128MB --region=asia-northeast1
+  call-ding:
+    desc: trigger cloud function, Great!
+    cmds:
+      - gcloud functions call Ding --region=asia-northeast1
